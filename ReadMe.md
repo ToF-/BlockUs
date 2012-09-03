@@ -4,13 +4,13 @@ Written in Haskell
 
 ## user stories
 
-* given a list of games, I create a new game and wait for other players
-* given a list of games, I enter a game waiting for players, and I am given a color
-* given a game situation, I see the board and the pieces I can play
-* given a game situation, I play a correct move, have the game displayed again and one piece less
-* given a game situation where I cannot play any piece, I'm noticed and see other players moves
-* given a game situation, I play an incorrect move and I'm noticed and invited to play another move
-* given that no more player can play, I'm noticed of the score made by each player including me
+1. given a list of games, I create a new game and wait for other players
+2. given a list of games, I enter a game waiting for players, and I am given a color
+3. given a game situation, I see the board and the pieces I can play
+4. given a game situation, I play a correct move, have the game displayed again and one piece less
+5. given a game situation where I cannot play any piece, I'm noticed and see other players moves
+6. given a game situation, I play an incorrect move and I'm noticed and invited to play another move
+7. given that no more player can play, I'm noticed of the score made by each player including me
 
 ## ideas for the board
 
