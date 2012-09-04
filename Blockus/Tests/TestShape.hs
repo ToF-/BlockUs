@@ -4,7 +4,7 @@ import Test.HUnit
 import Data.List
 import Blockus.Shape
 
-tests = TestList 
+tests = "A Shape" ~: TestList 
 
   ["overlaps another one of same coords" ~: 
     check  $ ["#"] `overlaps` ["#"] 
@@ -15,34 +15,44 @@ tests = TestList
   ,"overlaps another one with some coords in common" ~:
     check  $ ["##"] `overlaps` [" ##"] 
 
-  ,"neighbors another one with coord x distance = 1" ~:
+  ,"neighbors another one with coord x or coord y distance = 1" ~:
     TestList ["on the right" ~: check $ shapes neighbor ["#*"]
              ,"on the left"  ~: check $ shapes neighbor ["*#"]
-             ]
+             ,"below" ~: check $ shapes neighbor ["#",
+                                                  "*"]
+             ,"above" ~: check $ shapes neighbor ["*",
+                                                  "#"]
+             ]             
 
   ,"doesn't neighbor one with coord x distance > 1" ~:
     reject $ shapes neighbor ["# *"]
 
-  ,"neighbors another one with coord y distance = 1" ~:
-      TestList ["below" ~: check $ shapes neighbor ["#",
-                                                    "*"]
-               ,"above" ~: check $ shapes neighbor ["*",
-                                                   "#"]
-               ]
-  ]
+  ,"connects another one with coord x and y distance = 1" ~:
+    TestList ["right and down" ~: check $ shapes connect ["# ",
+                                                          " *"]
+             ,"left and up"    ~: check $ shapes connect ["* ",
+                                                          " #"]
+             ,"left and downs" ~: check $ shapes connect [" #",
+                                                          "* "]
+             ,"right and up"   ~: check $ shapes connect [" *",
+                                                          "# "]
+             ]
+    ,"doesn't connect one with coord x and y distance > 1" ~:
+      reject $ shapes connect ["# *"]
+    ]
 
 shapes :: (Shape -> Shape -> Bool) -> [String] -> Bool
 shapes f ss = let
-  s = shapeFromStrings '#' ss
-  t = shapeFromStrings '*' ss
+  s = fromStrings '#' ss
+  t = fromStrings '*' ss
   in f s t
 
 
-shapeFromStrings :: Char -> [String] -> Shape
-shapeFromStrings c ss = shape $ concat (zipWith getRow [0..] ss)
+fromStrings :: Char -> [String] -> Shape
+fromStrings c ss = shape $ concat (zipWith getRow [0..] ss)
   where getRow y s = [(x,y) | x <- elemIndices c s]
 
-sharp = shapeFromStrings '#'
+sharp = fromStrings '#'
 
 overlaps :: [String] -> [String] -> Bool
 overlaps s t = sharp s `overlap` sharp t 

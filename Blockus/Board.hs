@@ -1,0 +1,2 @@
+module Blockus.Board
+where

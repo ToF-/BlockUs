@@ -2,6 +2,8 @@ module TestAll
 where
 import Test.HUnit
 import Blockus.Tests.TestShape
+import Blockus.Tests.TestBoard
 
 main = runTestTT $ TestList
-  ["A Shape" ~: Blockus.Tests.TestShape.tests]
+  [Blockus.Tests.TestShape.tests
+  ,Blockus.Tests.TestBoard.tests]

@@ -14,5 +14,8 @@ overlap s t = not $ S.null $ S.intersection s t
 neighbor :: Shape -> Shape -> Bool
 neighbor s t = any (s `overlap`) $ map (\c-> translate c t) [(-1,0),(1,0),(0,-1),(0,1)] 
 
+connect :: Shape -> Shape -> Bool
+connect s t = any (s `overlap`) $ map (\c -> translate c t) [(-1,-1),(1,1),(1,-1),(-1,1)]
+
 translate :: Coord -> Shape -> Shape
 translate (i,j) s = S.map (\(x,y) -> (x+i,y+j)) s
