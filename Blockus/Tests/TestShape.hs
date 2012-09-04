@@ -4,17 +4,28 @@ import Test.HUnit
 import Data.List
 import Blockus.Shape
 
+tests = TestList 
+
+  ["overlaps another one of same coords" ~: 
+    check  $ "#" `overlaps` "#" 
+
+  ,"doesn't overlap a shape of different coords" ~:
+    reject $ "#" `overlaps` " #" 
+
+  ,"overlaps another one with some coords in common" ~:
+    check  $ "##" `overlaps` " ##" 
+
+  ]
+
 simple :: String -> Shape
 simple s = shape [(x,0) | x <- elemIndices '#' s]
 
-tests = TestList 
-  ["overlaps another one of same coords" ~: 
-    simple "#" `overlap` simple "#" ~?= True
+overlaps :: String -> String -> Bool
+overlaps s t = simple s `overlap` simple t 
 
-  ,"doesn't overlap a shape of different coords" ~:
-    simple "#" `overlap` simple " #" ~?= False
+check :: Bool -> Test
+check b = b ~?= True
 
-  ,"overlaps another one with some coords in common" ~:
-    simple "##" `overlap` simple " ##" ~?= True
+reject :: Bool -> Test
+reject b = b ~?= False
 
-  ]  
