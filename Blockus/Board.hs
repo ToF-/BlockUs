@@ -1,6 +1,7 @@
 module Blockus.Board
 where
 import Blockus.Shape
+import Blockus.Piece
 
 data BoardError = IllegalCoord
   deriving(Eq,Show)
@@ -11,5 +12,6 @@ data Board      = Nil
 emptyBoard :: Board
 emptyBoard = Nil
 
-accept :: Board -> Coord -> Shape -> Either BoardError Board
-accept _ _ _ = Left IllegalCoord
+place :: Board -> Coord -> Piece -> Either BoardError Board
+place _ (0,0) _ = Left IllegalCoord
+place b _ _     = Right b

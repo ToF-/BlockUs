@@ -2,6 +2,7 @@ module Blockus.Tests.TestShape
 where  
 import Test.HUnit
 import Data.List
+import Blockus.Tests.TestUtils
 import Blockus.Shape
 
 tests = "A Shape" ~: TestList 
@@ -60,9 +61,4 @@ overlaps s t = sharp s `overlap` sharp t
 neighbors :: [String] -> [String] -> Bool
 neighbors s t = sharp s  `neighbor` sharp t
 
-check :: Bool -> Test
-check b = b ~?= True
-
-reject :: Bool -> Test
-reject b = b ~?= False
 
