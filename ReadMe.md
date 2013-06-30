@@ -5,7 +5,8 @@ Written in Haskell
 ## user stories 
 (carpaccio)
 
-1. display a blokus board with colored tiles 
+1. display a blokus board with colored tiles on a web page
+The tiles are stored in a text file on the server
  
 
 ## ideas for the board
