@@ -22,24 +22,11 @@ aSimpleTable =
                                           H.td "R"
                                 H.tr $ do H.td "G" 
                                           H.td "Y"
-{-- 
-(H.p "hello, blaze!")
-<table border="1">
-<tr>
-<td>row 1, cell 1</td>
-<td>row 1, cell 2</td>
-</tr>
-<tr>
-<td>row 2, cell 1</td>
-<td>row 2, cell 2</td>
-</tr>
-</table>
---}
 
 helloBlaze :: ServerPart Response
 helloBlaze = 
    ok $ toResponse $ 
-    appTemplate "Hello, Blaze!" 
+    appTemplate "a simple table" 
                 [H.meta ! A.name "keywords" ! A.content "happstack, blaze, html"] 
                 aSimpleTable
                 
