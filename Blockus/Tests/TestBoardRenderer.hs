@@ -22,6 +22,10 @@ greenBlock = piece block Green
 yellowBlock = piece block Yellow
 
 
+
+htmlEquals :: H.Html -> H.Html -> Test
+htmlEquals result expected = R.renderHtml result ~?= R.renderHtml  expected
+
 tests = TestList 
   ["A Text Board Renderer" ~: TestList
     ["renders a text empty board" ~: 
@@ -43,17 +47,22 @@ tests = TestList
     ]
   ,"A Html Board Renderer" ~: TestList
     ["renders a html empty 1 cell board" ~: 
-       R.renderHtml (renderHtml 1 emptyBoard) ~?= "<table border=\"1\"><tr><td class=\"empty\"></td></tr></table>"
+       (renderHtml 1 emptyBoard) `htmlEquals` (H.table ! A.border "1" $ H.tr $ H.td "" ! A.class_ "empty")
+
     ,"renders a html empty 2 cell board" ~:
-       R.renderHtml (renderHtml 2 emptyBoard) ~?=
-       "<table border=\"1\"><tr><td class=\"empty\"></td><td class=\"empty\"></td></tr><tr><td class=\"empty\"></td><td class=\"empty\"></td></tr></table>"
+       (renderHtml 2 emptyBoard) `htmlEquals` (H.table ! A.border "1" $ do H.tr $ do H.td "" ! A.class_ "empty"
+                                                                                     H.td "" ! A.class_ "empty"
+                                                                           H.tr $ do H.td "" ! A.class_ "empty"
+                                                                                     H.td "" ! A.class_ "empty")
     ,"renders a html board with 1 blue cell" ~:
-       R.renderHtml (renderHtml 1 (put emptyBoard (1,1) blueBlock)) ~?= "<table border=\"1\"><tr><td class=\"blue\"></td></tr></table>"
+       (renderHtml 1 (put emptyBoard (1,1) blueBlock)) `htmlEquals` (H.table ! A.border "1" $ H.tr $ H.td "" ! A.class_ "blue")
+
     ,"renders a html board with 4 different cells" ~:
-       R.renderHtml (renderHtml 2 
-          (put (put (put (put emptyBoard (1,1) blueBlock) (2,1) redBlock) (1,2) yellowBlock) (2,2) greenBlock)) ~?= 
-          "<table border=\"1\"><tr><td class=\"blue\"></td><td class=\"red\"></td></tr><tr><td class=\"yellow\"></td><td class=\"green\"></td></tr></table>"
-
+      let board = (put (put (put (put emptyBoard (1,1) blueBlock) (2,1) redBlock) (1,2) yellowBlock) (2,2) greenBlock)
+      in (renderHtml 2 board)
+        `htmlEquals` (H.table ! A.border "1" $ do H.tr $ do H.td "" ! A.class_ "blue"
+                                                            H.td "" ! A.class_ "red"
+                                                  H.tr $ do H.td "" ! A.class_ "yellow"
+                                                            H.td "" ! A.class_ "green")
     ]
-
   ]
