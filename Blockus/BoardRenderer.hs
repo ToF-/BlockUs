@@ -21,9 +21,16 @@ renderText board = unlines ([[cell (lookup (x,y) board) | x <- [1..20]]| y <- [1
 cell :: H.Html 
 cell = H.td "" ! A.class_ "empty"
 
+cells :: Int -> H.Html
+cells 1 = cell
+cells n = do cell
+             cells (n-1)
+
+rows :: Int -> Int -> H.Html
+rows 1 n = H.tr $ cells n
+rows m n = do H.tr $ cells n
+              rows (m-1) n
+
 renderHtml :: Int -> Board -> H.Html
-renderHtml 1 _ =   (H.table ! A.border "1") $ do H.tr $ do cell 
-renderHtml 2 _ =   (H.table ! A.border "1") $ do H.tr $ do cell 
-                                                           cell
-                                                 H.tr $ do cell 
-                                                           cell
+renderHtml n _ =   (H.table ! A.border "1") $ rows n n
+
