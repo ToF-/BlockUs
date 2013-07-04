@@ -46,7 +46,14 @@ tests = TestList
        R.renderHtml (renderHtml 1 emptyBoard) ~?= "<table border=\"1\"><tr><td class=\"empty\"></td></tr></table>"
     ,"renders a html empty 2 cell board" ~:
        R.renderHtml (renderHtml 2 emptyBoard) ~?=
-       "<table border=\"1\"><tr><td class=\"empty\"></td><td class=\"empty\"></td></tr><tr><td class=\"empty\"></td><td class=\"empty\"></td></tr></table>" 
+       "<table border=\"1\"><tr><td class=\"empty\"></td><td class=\"empty\"></td></tr><tr><td class=\"empty\"></td><td class=\"empty\"></td></tr></table>"
+    ,"renders a html board with 1 blue cell" ~:
+       R.renderHtml (renderHtml 1 (put emptyBoard (1,1) blueBlock)) ~?= "<table border=\"1\"><tr><td class=\"blue\"></td></tr></table>"
+    ,"renders a html board with 4 different cells" ~:
+       R.renderHtml (renderHtml 2 
+          (put (put (put (put emptyBoard (1,1) blueBlock) (2,1) redBlock) (1,2) yellowBlock) (2,2) greenBlock)) ~?= 
+          "<table border=\"1\"><tr><td class=\"blue\"></td><td class=\"red\"></td></tr><tr><td class=\"yellow\"></td><td class=\"green\"></td></tr></table>"
+
     ]
 
   ]
