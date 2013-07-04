@@ -31,8 +31,9 @@ yellowBlock = piece block Yellow
 
 aBlockusGrid :: H.Html 
 aBlockusGrid = 
-  let board = put (put (put (put (put emptyBoard (1,1) blueBlock) (3,2) redBlock) (5,4) greenBlock) (20,20) yellowBlock) (19,20) yellowBlock
-  in renderHtml 20 board
+  let board =  put (put (put (put (put emptyBoard (1,1) blueBlock) (3,2) redBlock) (5,4) greenBlock) (20,20) yellowBlock) (19,20) yellowBlock
+      board'=  put (put (put (put (put board (2,1) blueBlock) (3,7) redBlock) (5,5) greenBlock) (2,2) yellowBlock) (3,2) yellowBlock
+  in renderHtml 20 board'
   
 aSimpleTable :: H.Html
 aSimpleTable = 

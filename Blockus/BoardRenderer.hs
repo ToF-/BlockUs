@@ -10,8 +10,9 @@ import qualified Text.Blaze.Html4.Strict as H
 import qualified Text.Blaze.Html4.Strict.Attributes as A
 
 
+type Grid = [[Maybe Color]]
 
-grid :: Int -> Board -> [[Maybe Color]]
+grid :: Int -> Board -> Grid
 grid m board = [[lookup (x,y) board | x <- [1..m]]| y <- [1..m]]
 
 renderText :: Board -> String
@@ -22,8 +23,8 @@ renderText = unlines . map (map cell) . (grid 20)
         cell (Just Green)  = 'G'
         cell (Just Yellow) = 'Y'
 
-cell :: Maybe Color -> H.Html 
-cell c = H.td "" ! A.class_ (classOfColor c) 
+cellHtml :: Maybe Color -> H.Html 
+cellHtml c = H.td "" ! A.class_ (classOfColor c) 
   where classOfColor Nothing     = "empty"
         classOfColor (Just Blue) = "blue"
         classOfColor (Just Red)  = "red"
@@ -31,16 +32,16 @@ cell c = H.td "" ! A.class_ (classOfColor c)
         classOfColor (Just Yellow) = "yellow"
 
 
-cells :: [Maybe Color] -> H.Html
-cells [c] = cell c
-cells (c:cs) = do cell c
-                  cells cs
+rowHtml :: [Maybe Color] -> H.Html
+rowHtml [c]    =    cellHtml c
+rowHtml (c:cs) = do cellHtml c
+                    rowHtml cs
 
-rows :: [[Maybe Color]] -> H.Html
-rows [r] = H.tr $ cells r
-rows (r:rs) = do H.tr $ cells r
-                 rows rs
+gridHtml :: Grid -> H.Html
+gridHtml [r]    =    H.tr $ rowHtml r
+gridHtml (r:rs) = do H.tr $ rowHtml r
+                     gridHtml rs
 
 renderHtml :: Int -> Board -> H.Html
-renderHtml n b =  (H.table ! A.border "1") $ rows (grid n b)
+renderHtml n b =  (H.table ! A.border "1") $ gridHtml (grid n b)
 
