@@ -26,8 +26,8 @@ body {
 
 table {
 	border-collapse: collapse;
-	width: 48px;
-	height: 48px;
+	width: 480px;
+	height: 480px;
 }
 table, th, td {
 	border: 2px solid black;
