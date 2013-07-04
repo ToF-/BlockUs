@@ -16,7 +16,7 @@ greenBlock = piece block Green
 yellowBlock = piece block Yellow
 
 
-tests = "A Board Renderer" ~: TestList
+tests = "A Text Board Renderer" ~: TestList
   ["renders a text empty board" ~: 
   	 renderText emptyBoard ~?= unlines (replicate 20 (replicate 20 '.'))
   ,"renders a board with a blue block in 1,1" ~:
