@@ -1,6 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Main where
 
+import Control.Monad (msum)
 import Happstack.Server
 import           Text.Blaze ((!))
 import qualified Text.Blaze.Html4.Strict as H
@@ -23,13 +24,16 @@ aSimpleTable =
                                 H.tr $ do H.td "G" 
                                           H.td "Y"
 
-helloBlaze :: ServerPart Response
-helloBlaze = 
+mainResponse :: ServerPart Response
+mainResponse = 
    ok $ toResponse $ 
     appTemplate "a simple table" 
-                [H.meta ! A.name "keywords" ! A.content "happstack, blaze, html"] 
+                [H.meta ! A.name "keywords" ! A.content "happstack, blaze, html",
+                 H.link ! A.rel "stylesheet" ! A.type_ "text/css" ! A.href "static/css/main.css"] 
                 aSimpleTable
                 
 
 main :: IO ()
-main = simpleHTTP nullConf $ helloBlaze
+main = simpleHTTP nullConf $ msum 
+  [dir "main" $ mainResponse,
+   dir "static" $ serveDirectory DisableBrowsing [] "static"]
