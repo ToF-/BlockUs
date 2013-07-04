@@ -8,6 +8,8 @@ import Blockus.Piece
 import Blockus.Board
 
 
+block = shape [(0,0)]
+
 blueBlock = piece block Blue
 redBlock = piece block Red
 
@@ -54,5 +56,3 @@ tests = "A Board" ~: TestList
 isRight :: Either a b -> Bool
 isRight (Right _) = True
 isRight (Left  _) = False
-
-block = shape [(0,0)]
