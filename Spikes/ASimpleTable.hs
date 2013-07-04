@@ -21,8 +21,14 @@ aSimpleTable :: H.Html
 aSimpleTable = 
   (H.table ! A.border "1") $ do H.tr $ do H.td "" ! A.class_ "blue" 
                                           H.td "" ! A.class_ "red"
+                                          H.td "" ! A.class_ "red" 
                                 H.tr $ do H.td "" ! A.class_ "green"
+                                          H.td "" ! A.class_ "empty"
                                           H.td "" ! A.class_ "yellow"
+                                H.tr $ do H.td "" ! A.class_ "empty"
+                                          H.td "" ! A.class_ "empty"
+                                          H.td "" ! A.class_ "yellow"
+
 
 mainResponse :: ServerPart Response
 mainResponse = 
