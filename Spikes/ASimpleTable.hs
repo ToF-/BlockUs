@@ -19,10 +19,10 @@ appTemplate title headers body =
 
 aSimpleTable :: H.Html
 aSimpleTable = 
-  (H.table ! A.border "1") $ do H.tr $ do H.td "B" 
-                                          H.td "R"
-                                H.tr $ do H.td "G" 
-                                          H.td "Y"
+  (H.table ! A.border "1") $ do H.tr $ do H.td "" ! A.class_ "blue" 
+                                          H.td "" ! A.class_ "red"
+                                H.tr $ do H.td "" ! A.class_ "green"
+                                          H.td "" ! A.class_ "yellow"
 
 mainResponse :: ServerPart Response
 mainResponse = 

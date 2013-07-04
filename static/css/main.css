@@ -1,5 +1,35 @@
 body {
     font-family: "DejaVu Sans Mono", "Lucida Console", monospace;
-    background-color:#d0e4fe;
+    background-color:white;
     }
 
+.blue {
+	background-color: #0000FF;
+	border-color: #0000CC;
+}
+.red {
+	background-color: #FF0000;
+	border-color: #CC0000;
+}
+.green {
+	background-color: #00CC00;
+	border-color: #006600;
+}
+.yellow {
+	background-color: #FFFF00;
+	border-color: #FFCC00;
+}
+
+table {
+	border-collapse: collapse;
+	width: 48px;
+	height: 48px;
+}
+table, th, td {
+	border: 2px solid black;
+}
+
+td {
+	text-align: center;
+	vertical-align: middle;
+}
