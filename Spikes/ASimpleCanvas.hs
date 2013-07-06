@@ -21,7 +21,7 @@ appTemplate title headers body =
 aSimpleCanvas :: H.Html
 aSimpleCanvas = do 
 	H.canvas ! A.id "myCanvas" ! A.width "200" ! A.height "100" ! A.style "border:1px solid #00DE23;" $ "your browser does not support the HTML5 canvas tag";
-	H.script 	"rectangle()"
+	H.script 	"draw()"
 
 mainResponse :: ServerPart Response
 mainResponse = 
