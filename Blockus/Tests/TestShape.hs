@@ -40,7 +40,19 @@ tests = "A Shape" ~: TestList
              ]
     ,"doesn't connect one with coord x and y distance > 1" ~:
       reject $ shapes connect ["# *"]
+
+    ,"can be flipped " ~:
+      TestList ["on the vertical axis" ~: check $ flipped ["###"
+                                                          ,"#  "] ["###",
+                                                                   "  #"]
+               ,"for any size of shape " ~: check $ flipped ["##"
+                                                             ,"# "] ["##",
+                                                                     " #"]
+                ]
     ]
+
+flipped :: [String] -> [String] -> Bool
+flipped s t = (vFlip (sharp s)) == (sharp t)
 
 shapes :: (Shape -> Shape -> Bool) -> [String] -> Bool
 shapes f ss = let

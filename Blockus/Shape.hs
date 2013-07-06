@@ -19,3 +19,7 @@ connect s t = any (s `overlap`) $ map (\c -> translate c t) [(-1,-1),(1,1),(1,-1
 
 translate :: Coord -> Shape -> Shape
 translate (i,j) s = S.map (\(x,y) -> (x+i,y+j)) s
+
+vFlip :: Shape -> Shape 
+vFlip s = S.map (\(x,y) -> (m-x,y)) s
+	where m = maximum (map fst (S.toList s))
