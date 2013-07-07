@@ -27,3 +27,6 @@ vFlip s = S.map (\(x,y) -> (m-x,y)) s
 rotate :: Shape -> Shape
 rotate = vFlip . reverse
 	where reverse s = S.map (\(x,y) -> (y,x)) s
+
+merge :: Shape -> Shape -> Shape
+merge = S.union

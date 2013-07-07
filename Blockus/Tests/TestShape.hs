@@ -63,7 +63,13 @@ tests = "A Shape" ~: TestList
       TestList ["by any distance" ~: check $ translated (2,1) ["##"] ["    ",
                                                                       "  ##"]
                 ]
+    ,"can be merged" ~:
+      TestList ["from distinct shapes" ~: check $ merged ["#"] [" #"] ["##"]
+                ,"from non distinct shapes" ~: check $ merged ["##"] [" ##"] ["###"]]
     ]
+
+merged :: [String] -> [String] -> [String] -> Bool
+merged s t r = merge (sharp s) (sharp t) == (sharp r)
 
 translated :: Coord -> [String] -> [String] -> Bool
 translated (x,y) s t = translate (x,y) (sharp s) == (sharp t)
