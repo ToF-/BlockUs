@@ -54,12 +54,19 @@ tests = "A Shape" ~: TestList
                                                     "#  "] ["##",
                                                             " #",
                                                             " #"]
-                ,"for any shapre" ~: check $ rotated ["# #",
-                                                      "###"] ["##",
-                                                              "# ",
-                                                              "##"]
+                ,"for any shape" ~: check $ rotated ["# #",
+                                                     "###"] ["##",
+                                                             "# ",
+                                                             "##"]
+                ]
+    ,"can be translated" ~:
+      TestList ["by any distance" ~: check $ translated (2,1) ["##"] ["    ",
+                                                                      "  ##"]
                 ]
     ]
+
+translated :: Coord -> [String] -> [String] -> Bool
+translated (x,y) s t = translate (x,y) (sharp s) == (sharp t)
 
 flipped :: [String] -> [String] -> Bool
 flipped s t = (vFlip (sharp s)) == (sharp t)
