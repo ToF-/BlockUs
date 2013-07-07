@@ -45,14 +45,28 @@ tests = "A Shape" ~: TestList
       TestList ["on the vertical axis" ~: check $ flipped ["###"
                                                           ,"#  "] ["###",
                                                                    "  #"]
-               ,"for any size of shape " ~: check $ flipped ["##"
-                                                             ,"# "] ["##",
-                                                                     " #"]
+               ,"for any size of shape " ~: check $ flipped ["# "
+                                                            ,"##"] [" #",
+                                                                    "##"]
+                ]
+    ,"can be rotated" ~:
+      TestList ["by 90 degrees" ~: check $ rotated ["###",
+                                                    "#  "] ["##",
+                                                            " #",
+                                                            " #"]
+                ,"for any shapre" ~: check $ rotated ["# #",
+                                                      "###"] ["##",
+                                                              "# ",
+                                                              "##"]
                 ]
     ]
 
 flipped :: [String] -> [String] -> Bool
 flipped s t = (vFlip (sharp s)) == (sharp t)
+
+rotated :: [String] -> [String] -> Bool
+rotated s t = (rotate (sharp s)) == (sharp t)
+
 
 shapes :: (Shape -> Shape -> Bool) -> [String] -> Bool
 shapes f ss = let

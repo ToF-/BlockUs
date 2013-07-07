@@ -23,3 +23,7 @@ translate (i,j) s = S.map (\(x,y) -> (x+i,y+j)) s
 vFlip :: Shape -> Shape 
 vFlip s = S.map (\(x,y) -> (m-x,y)) s
 	where m = maximum (map fst (S.toList s))
+
+rotate :: Shape -> Shape
+rotate = vFlip . reverse
+	where reverse s = S.map (\(x,y) -> (y,x)) s
