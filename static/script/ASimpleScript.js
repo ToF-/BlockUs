@@ -1,9 +1,11 @@
 
 var square = function(ctx, x, y) {
-	ctx.fillStyle="#CC0000";
-	ctx.fillRect(x*24,y*24,24,24);
 	ctx.fillStyle="#FF0000";
-	ctx.fillRect(x*24+2,y*24+2,20,20);
+	ctx.fillRect(x*24,y*24,24,24);
+	ctx.strokeStyle="#CC0000";
+	ctx.lineWidth=2;
+	ctx.strokeRect(x*24,y*24,24,24);
+	
 }
 var draw = function() {
 	var c=document.getElementById("myCanvas");
