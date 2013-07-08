@@ -1,6 +1,7 @@
 module Blockus.Shape
 where
 import qualified Data.Set as S
+import Data.List
 
 type Coord = (Int,Int)
 type Shape = S.Set Coord
@@ -30,3 +31,76 @@ rotate = vFlip . reverse
 
 merge :: Shape -> Shape -> Shape
 merge = S.union
+
+shapeFromStrings :: Char -> [String] -> Shape
+shapeFromStrings c ss = shape $ concat (zipWith getRow [0..] ss)
+  where getRow y s = [(x,y) | x <- elemIndices c s]
+
+sharp = shapeFromStrings '#'
+
+allShapes = [["#"]
+
+            ,["##"]
+
+            ,["##"
+             ," #"]
+
+            ,["###"]
+
+            ,["##"
+             ,"##"]
+
+            ,[" # "
+             ,"###"]
+
+            ,["####"]
+
+            ,["  #"
+             ,"###"]
+
+            ,[" ##"
+             ,"## "]
+
+            ,["#   "
+             ,"####"]
+
+            ,[" # "
+             ," # "
+             ,"###"]
+
+            ,["#  "
+             ,"#  "
+             ,"###"]
+
+            ,[" ###"
+             ,"##  "]
+
+            ,["   #"
+             ,"####"
+             ,"#   "]
+
+            ,["#####"]
+
+            ,["# "
+             ,"##"
+             ,"##"]
+
+            ,[" ##"
+             ,"## "
+             ,"#  "]
+
+            ,["##"
+             ,"# "
+             ,"##"]
+
+            ,[" ##"
+             ,"## "
+             ," # "]
+
+            ,[" # "
+             ,"###"
+             ," # "]
+
+            ,[" #  "
+             ,"####"]
+            ]

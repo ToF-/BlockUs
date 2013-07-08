@@ -83,16 +83,10 @@ rotated s t = (rotate (sharp s)) == (sharp t)
 
 shapes :: (Shape -> Shape -> Bool) -> [String] -> Bool
 shapes f ss = let
-  s = fromStrings '#' ss
-  t = fromStrings '*' ss
+  s = shapeFromStrings '#' ss
+  t = shapeFromStrings '*' ss
   in f s t
 
-
-fromStrings :: Char -> [String] -> Shape
-fromStrings c ss = shape $ concat (zipWith getRow [0..] ss)
-  where getRow y s = [(x,y) | x <- elemIndices c s]
-
-sharp = fromStrings '#'
 
 overlaps :: [String] -> [String] -> Bool
 overlaps s t = sharp s `overlap` sharp t 
