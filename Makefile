@@ -1,6 +1,8 @@
 C=ghc
 F=--make -threaded 
 
+image: Spikes/ASimpleImage.hs
+	$(C) $(F) Spikes/ASimpleImage.hs -o bin/ASimpleImage
 table: Spikes/ASimpleTable.hs
 	$(C) $(F) Spikes/ASimpleTable.hs -o bin/ASimpleTable
 
