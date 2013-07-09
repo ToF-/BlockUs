@@ -2,16 +2,18 @@ module Blockus.SVG
 where
 import Data.List
 
-data RGB = RGB Int Int Int 
-data Context = Context { fillColor :: RGB, strokeWidth :: Int, strokeColor :: RGB }
+data Color   = RGB Int Int Int 
+data Context = Context { fillColor :: Color, strokeWidth :: Int, strokeColor :: Color }
 
 attribute :: String -> String ->String
 attribute a v = (' ': a) ++ "=" ++ show v
 
+map_ = map . uncurry
+
 style :: Context -> String
-style ctx = showArgs ";" $ map (uncurry styleAttribute) [("fill",          rgb (fillColor ctx))
-										 				,("stroke-width",  show (strokeWidth ctx))
-										 				,("stroke",        rgb (strokeColor ctx))]
+style ctx = showArgs ";" $ map_ styleAttribute [("fill",          rgb (fillColor ctx))
+										 	   ,("stroke-width",  show (strokeWidth ctx))
+									     	   ,("stroke",        rgb (strokeColor ctx))]
 
 rgb (RGB r g b) = "rgb(" ++ showArgs "," (map show [r,g,b]) ++ ")"
 
@@ -25,8 +27,8 @@ element :: String -> [String] -> String
 element el atts = ('<' : el) ++ concat atts ++ "/>"
 
 rect :: Int -> Int -> Int -> Int -> Context -> String
-rect x y w h ctx = element "rect" (map (uncurry attribute)  [("x",     show x) 
-								                            ,("y",     show y) 
-								                            ,("width", show w)
-								                            ,("height",show h)
-								                            ,("style", style ctx)] )
+rect x y w h ctx = element "rect" $ map_ attribute [("x",     show x) 
+								                   ,("y",     show y) 
+								                   ,("width", show w)
+								                   ,("height",show h)
+								                   ,("style", style ctx)]
