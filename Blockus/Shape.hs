@@ -6,8 +6,11 @@ import Data.List
 type Coord = (Int,Int)
 type Shape = S.Set Coord
 
-shape :: [(Int,Int)] -> Shape 
+shape :: [Coord] -> Shape 
 shape cs = S.fromList cs
+
+toList :: Shape -> [Coord]
+toList cs = S.toList cs
 
 overlap :: Shape -> Shape -> Bool
 overlap s t = not $ S.null $ S.intersection s t  

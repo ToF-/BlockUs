@@ -1,9 +1,19 @@
 module Blockus.SVG
 where
 import Data.List
+import Blockus.Shape as S
 
 data Color   = RGB Int Int Int 
 data Context = Context { fillColor :: Color, strokeWidth :: Int, strokeColor :: Color }
+
+blue :: Context
+blue =  Context (RGB 0 0 255) 2 (RGB 0 0 240)
+
+shape :: Context -> Int -> Int -> Shape -> String
+shape ctx x y s = ""
+
+square :: Context -> Int -> Int -> String
+square ctx x y = rect (x*24) (y*24) 24 24 ctx
 
 attribute :: String -> String ->String
 attribute a v = (' ': a) ++ "=" ++ show v
