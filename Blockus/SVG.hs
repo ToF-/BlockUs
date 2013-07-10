@@ -10,7 +10,7 @@ blue :: Context
 blue =  Context (RGB 0 0 255) 2 (RGB 0 0 240)
 
 shape :: Context -> Int -> Int -> Shape -> String
-shape ctx x y s = ""
+shape ctx x y s = concat $ intersperse "\n" $ map_ (square ctx) (S.toList (translate (x,y) s))
 
 square :: Context -> Int -> Int -> String
 square ctx x y = rect (x*24) (y*24) 24 24 ctx
@@ -22,8 +22,8 @@ map_ = map . uncurry
 
 style :: Context -> String
 style ctx = showArgs ";" $ map_ styleAttribute [("fill",          rgb (fillColor ctx))
-										 	   ,("stroke-width",  show (strokeWidth ctx))
-									     	   ,("stroke",        rgb (strokeColor ctx))]
+										 	                         ,("stroke-width",  show (strokeWidth ctx))
+									     	                       ,("stroke",        rgb (strokeColor ctx))]
 
 rgb (RGB r g b) = "rgb(" ++ showArgs "," (map show [r,g,b]) ++ ")"
 

@@ -15,7 +15,7 @@ tests = "A SVG" ~: TestList
       "<rect x=\"24\" y=\"48\" width=\"24\" height=\"24\" style=\"fill:rgb(0,0,255);stroke-width:2;stroke:rgb(0,0,240)\"/>"
   ,"creates a shape" ~: SVG.shape SVG.blue 1 2 (S.shape [(0,0),(1,0),(0,1)]) ~?=
       "<rect x=\"24\" y=\"48\" width=\"24\" height=\"24\" style=\"fill:rgb(0,0,255);stroke-width:2;stroke:rgb(0,0,240)\"/>\n" ++
-      "<rect x=\"48\" y=\"48\" width=\"24\" height=\"24\" style=\"fill:rgb(0,0,255);stroke-width:2;stroke:rgb(0,0,240)\"/>\n" ++
-      "<rect x=\"24\" y=\"72\" width=\"24\" height=\"24\" style=\"fill:rgb(0,0,255);stroke-width:2;stroke:rgb(0,0,240)\"/>"
+      "<rect x=\"24\" y=\"72\" width=\"24\" height=\"24\" style=\"fill:rgb(0,0,255);stroke-width:2;stroke:rgb(0,0,240)\"/>\n" ++
+      "<rect x=\"48\" y=\"48\" width=\"24\" height=\"24\" style=\"fill:rgb(0,0,255);stroke-width:2;stroke:rgb(0,0,240)\"/>"
 
   ]
