@@ -10,7 +10,7 @@ tests = "A Piece" ~: TestList
   ["has a shape" ~: shapeOf blueBlock ~?= shape [(0,0)]
   ,"has a color" ~: colorOf blueBlock ~?= Blue
   ,"can be defined with a list of strings" ~: TestList
-  	["such a simple sharp" ~:  
+  	["such as a simple sharp" ~:  
   		let p = pieceFrom ["#"] Blue
   		in shapeOf p ~?= shape [(0,0)]
   	,"such as line of sharps" ~:

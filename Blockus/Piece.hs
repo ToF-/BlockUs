@@ -17,6 +17,4 @@ piece :: Shape -> Color -> Piece
 piece = (,)
 
 pieceFrom :: [String] -> Color -> Piece
-pieceFrom ss c = piece (shape (decode ss)) c
-	where decode ss = concat [decodeLine s y | (y,s) <- zip [0..] ss]
-	      decodeLine s y = [(x,y) | (x,ch) <- zip [0..] s, ch /= ' ']
+pieceFrom ss c = piece (shapeFromStrings '#' ss) c
