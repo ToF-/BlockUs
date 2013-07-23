@@ -6,7 +6,7 @@ import Blockus.Tests.TestPiece
 import Blockus.Tests.TestBoard
 import Blockus.Tests.TestBoardRenderer
 import Blockus.Tests.TestDrawShapes
-import Blockus.Tests.TestSVG
+import Blockus.Tests.TestSVGRenderer
 
 main = runTestTT $ TestList
   [Blockus.Tests.TestShape.tests
@@ -14,5 +14,5 @@ main = runTestTT $ TestList
   ,Blockus.Tests.TestBoard.tests
   ,Blockus.Tests.TestBoardRenderer.tests
   ,Blockus.Tests.TestDrawShapes.tests
-  ,Blockus.Tests.TestSVG.tests
+  ,Blockus.Tests.TestSVGRenderer.tests
   ]
