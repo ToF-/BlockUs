@@ -9,9 +9,11 @@ render x y (_,c) = "<rect " ++ (coords x y) ++ size ++ style ++ "/>"
 		      color Red  = "fill:#ff0000;stroke:#f00000"
 		      color Green= "fill:#00ff00;stroke:#00f000"
 		      color Yellow="fill:#ffff00;stroke:#f0f000"
-		      coords x y = param "x" (show (x*24)) ++ " " ++ param "y" (show (y*24))
-		      size = param " width" (show 24) ++ " " ++ param "height" (show 24) 
+		      coords x y = int "x" (x*24) `space` int "y" (y*24)
+		      size       = int " width" 24 `space` int "height" 24 
 		      style = param " style" ("stroke-width:2;" ++ color c)
+		      int p v = param p (show v)
 		      param p v = p ++ "=" ++ enquote v
 		      enquote s = quote ++ s ++ quote
 		      quote = "\""
+		      space s t = s ++ " " ++ t
