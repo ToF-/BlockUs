@@ -14,6 +14,6 @@ tests = "A SVG renderer" ~: TestList
 	 (render 0 0 b) ~?= 
   		"<rect x=\"0\" y=\"0\" width=\"24\" height=\"24\" style=\"stroke-width:2;fill:#0000ff;stroke:#0000f0\"/>"
   ,"renders pieces of different colors" ~:
-	 (render 0 0 b) ~?= 
+	 (render 0 0 r) ~?= 
   		"<rect x=\"0\" y=\"0\" width=\"24\" height=\"24\" style=\"stroke-width:2;fill:#00ff00;stroke:#00f000\"/>"
   ]
