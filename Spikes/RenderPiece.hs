@@ -6,9 +6,8 @@ import Blockus.Piece
 import Data.ByteString.Char8 as BS
 
 
-b = pieceFrom ["#"] Blue
-r = pieceFrom ["#"] Red 
-y = pieceFrom ["#"] Yellow
-g = pieceFrom ["#"] Green
 
-main = BS.putStrLn $ render 0 0 r 
+r = pieceFrom ["###"] Yellow 
+
+
+main = BS.putStrLn $ render 5 10 r 

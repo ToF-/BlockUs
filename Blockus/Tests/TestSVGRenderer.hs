@@ -13,6 +13,7 @@ r = pieceFrom ["#"] Red
 y = pieceFrom ["#"] Yellow
 g = pieceFrom ["#"] Green
 
+bar = pieceFrom ["###"] Blue
 includes = flip isInfixOf
 
 tests = "A SVG renderer" ~: TestList
@@ -24,7 +25,18 @@ tests = "A SVG renderer" ~: TestList
  
   ,"renders pieces at different positions" ~: TestList
     [check $ (render 1 0 g) `includes`  (pack "x=\"24\"")
-    ,check $ (render 0 2 g) `includes`  (pack "y=\"48\"")
-    ]
+    ,check $ (render 0 2 g) `includes`  (pack "y=\"48\"")]
 
+  ,"renders complex pieces" ~: TestList
+    [check $ (render 0 0 bar) `includes` (pack "x=\"0\"")
+    ,check $ (render 0 0 bar) `includes` (pack "x=\"24\"")
+    ,check $ (render 0 0 bar) `includes` (pack "x=\"48\"")
+    ]
+  ,"renders pieces at distance from 0 0 " ~: TestList
+    [check $ (render 5 10 bar) `includes` (pack "x=\"120\"")
+    ,check $ (render 5 10 bar) `includes` (pack "x=\"144\"")
+    ,check $ (render 5 10 bar) `includes` (pack "x=\"168\"")
+    ,check $ (render 5 10 bar) `includes` (pack "y=\"240\"")
+    ,check $ (render 5 11 bar) `includes` (pack "y=\"264\"")
+     ]
   ]
