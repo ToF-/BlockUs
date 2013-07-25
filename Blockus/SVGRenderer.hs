@@ -21,13 +21,14 @@ style c = "stroke-width:2;" ++ "fill:" ++ fc ++ ";stroke:" ++ sc
 		              colors Green= ("#00ff00","#00f000")
 		              colors Yellow=("#ffff00","#f0f000")
 
-genSquares :: (Int, Int, Piece) -> [Xml Elem]
-genSquares (i,j,p) = Prelude.map (\(x,y) -> genSquare (i+x) (j+y) p) (toList (shapeOf p))
+genSquares :: [(Int, Int, Piece)] -> [Xml Elem]
+genSquares ps = Prelude.concatMap genPiece ps
+              where genPiece (i,j,p) = Prelude.map (\(x,y) -> genSquare (i+x) (j+y) p) (toList (shapeOf p))
 
 genSvg :: [(Int, Int, Piece)] -> Xml Doc
-genSvg [(x,y,p)] = doc defaultDocInfo $ xelem "svg" $ xattr "xmlns" "http://www.w3.org/2000/svg" 
-                                   <#> xelems (genSquares (x,y,p))
+genSvg ps = doc defaultDocInfo $ xelem "svg" $ xattr "xmlns" "http://www.w3.org/2000/svg" 
+                                   <#> xelems (genSquares ps)
 
 render :: [(Int, Int, Piece)] -> ByteString
-render [(x,y,p)] = xrender $ genSvg [(x,y,p)]
+render ps = xrender $ genSvg ps
 

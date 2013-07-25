@@ -38,5 +38,11 @@ tests = "A SVG renderer" ~: TestList
     ,check $ (render [(5,10,bar)]) `includes` (pack "x=\"168\"")
     ,check $ (render [(5,10,bar)]) `includes` (pack "y=\"240\"")
     ,check $ (render [(5,11,bar)]) `includes` (pack "y=\"264\"")
-     ]
+    ]
+  ,"renders many pieces" ~: TestList
+    [check $ (render [(0,0,g),(1,1,g)]) `includes` (pack "#00ff00;stroke:#00f000")
+    ,check $ (render [(0,0,g),(1,1,b)]) `includes` (pack "#0000ff;stroke:#0000f0")
+    ,check $ (render [(0,0,g),(1,1,g)]) `includes` (pack "x=\"0\"")
+    ,check $ (render [(0,0,g),(1,1,b)]) `includes` (pack "x=\"24\"")
+    ]
   ]
