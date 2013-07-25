@@ -2,6 +2,8 @@ module Blockus.SVGRenderer
 where
 
 import Blockus.Piece
+import Text.XML.Generator
+
 
 render :: Int -> Int -> Piece -> String
 render x y (_,c) = "<rect " ++ (coords x y) ++ size ++ style c ++ "/>"
