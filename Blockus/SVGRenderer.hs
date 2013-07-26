@@ -7,12 +7,15 @@ import Data.ByteString
 import Text.XML.Generator
 import Blockus.Shape
 
-genSquare :: Int -> Int -> Piece -> Xml Elem
-genSquare x y (_,c) = xelem "rect" $ xattr "x" (show (x*24)) 
-                                   <> xattr "y" (show (y*24))
-                                   <> xattr "width"  (show 24)
-                                   <> xattr "height" (show 24)
-                                   <> xattr "style" (style c)
+xIntAttr :: String -> Int -> Xml Attr
+xIntAttr a v = xattr a $ show v
+
+genSquare :: Int -> Int -> Color -> Xml Elem
+genSquare x y c = xelem "rect" $  xIntAttr "x" (x*24) 
+                                   <> xIntAttr "y" (y*24)
+                                   <> xIntAttr "width"  24
+                                   <> xIntAttr "height" 24
+                                   <> xattr    "style" (style c)
 style :: Color -> String
 style c = "stroke-width:2;" ++ "fill:" ++ fc ++ ";stroke:" ++ sc
 		      	where (fc,sc) = colors c
@@ -23,7 +26,8 @@ style c = "stroke-width:2;" ++ "fill:" ++ fc ++ ";stroke:" ++ sc
 
 genSquares :: [(Int, Int, Piece)] -> [Xml Elem]
 genSquares ps = Prelude.concatMap genPiece ps
-              where genPiece (i,j,p) = Prelude.map (\(x,y) -> genSquare (i+x) (j+y) p) (toList (shapeOf p))
+              where genPiece (i,j,p) = 
+              	     Prelude.map (\(x,y) -> genSquare (i+x) (j+y) (colorOf p)) (toList (shapeOf p))
 
 genSvg :: [(Int, Int, Piece)] -> Xml Doc
 genSvg ps = doc defaultDocInfo $ xelem "svg" $ xattr "xmlns" "http://www.w3.org/2000/svg" 
