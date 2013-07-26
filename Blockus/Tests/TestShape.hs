@@ -7,7 +7,14 @@ import Blockus.Shape
 
 tests = "A Shape" ~: TestList 
 
-  ["overlaps another one of same coords" ~: 
+  ["has a area size" ~: TestList 
+  [area (sharp ["#"]) ~?= 1
+  ,area (sharp [" #","##"]) ~?= 2
+  ,area (sharp [" ##"]) ~?= 2
+  ,area (sharp ["#","#"]) ~?= 2
+    ]
+
+  ,"overlaps another one of same coords" ~: 
     check  $ ["#"] `overlaps` ["#"] 
 
   ,"doesn't overlap a shape of different coords" ~:

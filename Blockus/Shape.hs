@@ -9,6 +9,14 @@ type Shape = S.Set Coord
 shape :: [Coord] -> Shape 
 shape cs = S.fromList cs
 
+area :: Shape -> Int
+area s = max w h 
+      where w = 1 + maximum xs - minimum xs
+            h = 1 + maximum ys - minimum ys
+            xs = map fst (toList s)
+            ys = map snd (toList s)
+
+
 toList :: Shape -> [Coord]
 toList cs = S.toList cs
 
