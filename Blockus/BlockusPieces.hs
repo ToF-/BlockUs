@@ -11,6 +11,9 @@ import Blockus.Shape
 import Blockus.Piece
 import Data.List
 
+templatePos :: Int -> Int -> Int -> (Int,Int)
+templatePos c s p = (p*6,c*6*21+s*6)
+
 pieces :: [[[Piece]]]
 pieces = [[[piece s c | s <- ps] | ps <- shapes] | c <- [Blue, Red, Green, Yellow]]
 

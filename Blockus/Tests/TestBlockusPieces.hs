@@ -66,23 +66,31 @@ tests = "In the table of the pieces" ~: TestList
   	                                  "##"])
    ,length (shapes!!7) ~?= 8]
   ,"the table of pieces contains" ~: TestList 
-  ["blue pieces" ~: TestList 
-    [colorOf (((pieces!!0)!!0)!!0) ~?= Blue
-    ,colorOf (((pieces!!0)!!1)!!0) ~?= Blue
-    ,colorOf (((pieces!!0)!!2)!!2) ~?= Blue]
-  ,"red pieces" ~: TestList 
-    [colorOf (((pieces!!1)!!0)!!0) ~?= Red
-    ,colorOf (((pieces!!1)!!1)!!0) ~?= Red
-    ,colorOf (((pieces!!1)!!2)!!2) ~?= Red]
-  ,"green pieces" ~: TestList 
-    [colorOf (((pieces!!2)!!0)!!0) ~?= Green
-    ,colorOf (((pieces!!2)!!1)!!0) ~?= Green
-    ,colorOf (((pieces!!2)!!2)!!2) ~?= Green]
-  ,"yellow pieces" ~: TestList 
-    [colorOf (((pieces!!3)!!0)!!0) ~?= Yellow
-    ,colorOf (((pieces!!3)!!1)!!0) ~?= Yellow
-    ,colorOf (((pieces!!3)!!2)!!2) ~?= Yellow]
-  ]
+    ["blue pieces" ~: TestList 
+      [colorOf (((pieces!!0)!!0)!!0) ~?= Blue
+      ,colorOf (((pieces!!0)!!1)!!0) ~?= Blue
+      ,colorOf (((pieces!!0)!!20)!!7) ~?= Blue]
+    ,"red pieces" ~: TestList 
+      [colorOf (((pieces!!1)!!20)!!7) ~?= Red]
+    ,"green pieces" ~: TestList 
+      [colorOf (((pieces!!2)!!0)!!0) ~?= Green
+      ,colorOf (((pieces!!2)!!20)!!7) ~?= Green]
+    ,"yellow pieces" ~: TestList 
+      [colorOf (((pieces!!3)!!0)!!0) ~?= Yellow
+      ,colorOf (((pieces!!3)!!20)!!7) ~?= Yellow]
+    ]
+   ,"coords of pieces in the template" ~: TestList
+    ["depends on position number" ~: TestList 
+      [templatePos 0 0 0 ~?= (0,0)
+      ,templatePos 0 0 1 ~?= (6,0)
+      ,templatePos 0 0 2 ~?= (12,0)]
+    ,"depends on shape number" ~: TestList
+      [templatePos 0 1 0 ~?= (0,6)
+      ,templatePos 0 2 0 ~?= (0,12)]
+    ,"depends on color number" ~: TestList
+      [templatePos 1 0 0 ~?= (0, 6*21)
+      ,templatePos 3 20 7 ~?= (6*7,3*6*21+6*20)]
+    ]
   ]
 
 
