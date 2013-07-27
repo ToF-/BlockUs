@@ -11,6 +11,10 @@ import Blockus.Shape
 import Blockus.Piece
 import Data.List
 
+pieces :: [[[Piece]]]
+pieces = [[[piece s c | s <- ps] | ps <- shapes] | c <- [Blue, Red, Green, Yellow]]
+
+shapes :: [[Shape]]
 shapes = [positions ss | ss <- patterns]
 	where positions ss = nub ((rotations sh) ++ (rotations (vFlip sh))) 
 	                       where sh = shapeFromStrings '#' ss
