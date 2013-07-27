@@ -11,7 +11,18 @@ import Blockus.Shape
 import Blockus.Piece
 import Data.List
 
-templatePos :: Int -> Int -> Int -> (Int,Int)
+template :: [((Int, Int),Piece)]
+template = [(templatePos 0 0 0,((pieces!!0)!!0)!!0),
+            (templatePos 0 1 0,((pieces!!0)!!1)!!0),
+            (templatePos 0 1 1,((pieces!!0)!!1)!!1)]
+
+index :: [a] -> [(Int,a)]
+index = zip [0..]
+
+mergeIx :: [[(Int,a)]] -> [((Int,Int),a)]
+mergeIx ll = concat [[((y,x),i) | (x,i) <- l] | (y,l) <- index ll]  
+
+
 templatePos c s p = (p*6,c*6*21+s*6)
 
 pieces :: [[[Piece]]]

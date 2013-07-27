@@ -91,7 +91,16 @@ tests = "In the table of the pieces" ~: TestList
       [templatePos 1 0 0 ~?= (0, 6*21)
       ,templatePos 3 20 7 ~?= (6*7,3*6*21+6*20)]
     ]
-  ]
+   ,"list of pieces with positions" ~: TestList
+    ["include coords and piece" ~: TestList 
+      [fst (template!!0) ~?= (0,0)
+      ,snd (template!!0) ~?= (((pieces!!0)!!0)!!0)]
+    ,"calculate coords depending on piece position" ~: TestList
+      [fst (template!!1) ~?= (0,6)
+      ,snd (template!!1) ~?= (((pieces!!0)!!1)!!0)
+      ,fst (template!!2) ~?= (6,6)]
+    ]
+ ]
 
 
 equals :: Shape -> [String] -> Bool
