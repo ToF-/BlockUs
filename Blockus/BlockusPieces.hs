@@ -12,9 +12,18 @@ import Blockus.Piece
 import Data.List
 
 template :: [((Int, Int),Piece)]
-template = [(templatePos 0 0 0,((pieces!!0)!!0)!!0),
-            (templatePos 0 1 0,((pieces!!0)!!1)!!0),
-            (templatePos 0 1 1,((pieces!!0)!!1)!!1)]
+template = map (\((c,s,p),pc) -> ((templatePos c s p),pc))
+             $ indexPositions $ indexShapes $ indexColors pieces
+
+
+indexColors :: [[[Piece]]] -> [(Int,[[Piece]])]
+indexColors = zip [0..]
+
+indexShapes :: [(Int,[[Piece]])] -> [((Int,Int),[Piece])]
+indexShapes cs =  concat [[((ixc,ixs),s) | (ixs,s) <- zip [0..] ss] | (ixc,ss) <- cs]
+
+indexPositions :: [((Int,Int),[Piece])] -> [((Int,Int,Int),Piece)]
+indexPositions ss = concat [[((ixc,ixs,ixp),p) | (ixp,p) <- zip [0..] ps] | ((ixc,ixs),ps) <- ss]   
 
 index :: [a] -> [(Int,a)]
 index = zip [0..]
@@ -22,7 +31,7 @@ index = zip [0..]
 mergeIx :: [[(Int,a)]] -> [((Int,Int),a)]
 mergeIx ll = concat [[((y,x),i) | (x,i) <- l] | (y,l) <- index ll]  
 
-
+templatePos :: Int -> Int -> Int -> (Int,Int)
 templatePos c s p = (p*6,c*6*21+s*6)
 
 pieces :: [[[Piece]]]
