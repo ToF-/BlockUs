@@ -6,6 +6,8 @@ import Blockus.Shape
 import Blockus.Piece
 import Blockus.BlockusPieces
 
+
+
 tests = "In the table of the pieces" ~: TestList
   ["the small shape has only 1 position" ~: TestList  
   	[check ((shapes!!0) !! 0 `equals` ["#"])

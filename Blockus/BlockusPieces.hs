@@ -11,6 +11,7 @@ import Blockus.Shape
 import Blockus.Piece
 import Data.List
 
+
 template :: [((Int, Int),Piece)]
 template = map (\((c,s,p),pc) -> ((templatePos c s p),pc))
              $ indexPositions $ indexShapes $ indexColors pieces
@@ -35,7 +36,7 @@ templatePos :: Int -> Int -> Int -> (Int,Int)
 templatePos c s p = (p*6,c*6*21+s*6)
 
 pieces :: [[[Piece]]]
-pieces = [[[piece s c | s <- ps] | ps <- shapes] | c <- [Blue, Red, Green, Yellow]]
+pieces = [[[piece s col | s <- ps] | ps <- shapes] | col <- [Blue, Red, Green, Yellow]]
 
 shapes :: [[Shape]]
 shapes = [positions ss | ss <- patterns]
@@ -43,6 +44,7 @@ shapes = [positions ss | ss <- patterns]
 	                       where sh = shapeFromStrings '#' ss
 
 rotations s = [s, rotate s, rotate (rotate s), rotate (rotate (rotate s))]
+
 
 patterns = [["#"]      -- 0
 
