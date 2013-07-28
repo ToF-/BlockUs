@@ -8,7 +8,7 @@ import Blockus.Piece
 import Blockus.Board
 
 
-block = shape [(0,0)]
+block = fromList [(0,0)]
 
 blueBlock = piece block Blue
 redBlock = piece block Red
@@ -40,7 +40,7 @@ tests = "A Board" ~: TestList
   		        let board = put emptyBoard (3,4) redBlock
   		        in board `at` (3,4) ~?= Just Red
   		     ,"when it's filled with a piece of several blocks" ~:
-  		        let board = put emptyBoard (2,2) (piece (shape [(0,0),(1,0),(0,1)]) Yellow)
+  		        let board = put emptyBoard (2,2) (piece (fromList [(0,0),(1,0),(0,1)]) Yellow)
   		        in TestList [board `at` (2,2) ~?= Just Yellow
   		        	 		,board `at` (2,3) ~?= Just Yellow
   		        	 		,board `at` (3,2) ~?= Just Yellow

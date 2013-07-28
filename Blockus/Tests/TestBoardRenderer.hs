@@ -14,7 +14,7 @@ import qualified Text.Blaze.Html4.Strict as H
 import qualified Text.Blaze.Html4.Strict.Attributes as A
 import qualified Text.Blaze.Html.Renderer.Utf8 as R
 
-block = shape [(0,0)]
+block = fromList [(0,0)]
 
 blueBlock = piece block Blue
 redBlock = piece block Red
