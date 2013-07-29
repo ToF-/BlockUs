@@ -16,10 +16,10 @@ import qualified Text.Blaze.Html.Renderer.Utf8 as R
 
 block = fromList [(0,0)]
 
-blueBlock = piece block Blue
-redBlock = piece block Red
-greenBlock = piece block Green
-yellowBlock = piece block Yellow
+blueBlock = Piece block Blue
+redBlock = Piece block Red
+greenBlock = Piece block Green
+yellowBlock = Piece block Yellow
 
 
 

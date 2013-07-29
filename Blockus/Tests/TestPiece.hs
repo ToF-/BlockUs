@@ -5,7 +5,7 @@ import Test.HUnit
 import Blockus.Shape
 import Blockus.Piece
 
-blueBlock = piece (fromList [(0,0)]) Blue
+blueBlock = Piece (fromList [(0,0)]) Blue
 
 tests = "A Piece" ~: TestList 
   ["has a shape" ~: shapeOf blueBlock ~?= fromList [(0,0)]

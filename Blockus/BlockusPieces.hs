@@ -36,7 +36,7 @@ templatePos :: Int -> Int -> Int -> (Int,Int)
 templatePos c s p = (p*6,c*6*21+s*6)
 
 pieces :: [[[Piece]]]
-pieces = [[[piece s col | s <- ps] | ps <- shapes] | col <- [Blue, Red, Green, Yellow]]
+pieces = [[[Piece s col | s <- ps] | ps <- shapes] | col <- [Blue, Red, Green, Yellow]]
 
 shapes :: [[Shape]]
 shapes = [positions ss | ss <- patterns]

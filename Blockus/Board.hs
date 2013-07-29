@@ -17,7 +17,7 @@ place _ (0,0) _ = Left IllegalCoord
 place b c p     = Right (put b c p)
 
 put :: Board -> Coord -> Piece -> Board
-put b (x,y) (shape,color) = b ++ zip (toList (translate (x,y) shape)) (repeat color)
+put b (x,y) p = b ++ zip (toList (translate (x,y) $ shapeOf p)) (repeat $ colorOf p)
 
 at :: Board -> Coord -> Maybe Color
 at = flip lookup

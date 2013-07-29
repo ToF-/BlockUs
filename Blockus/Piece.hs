@@ -5,16 +5,8 @@ import Blockus.Shape
 data Color = Blue | Yellow | Red | Green
   deriving (Eq, Show)
 
-type Piece = (Shape, Color)  
-
-shapeOf :: Piece -> Shape
-shapeOf = fst
-
-colorOf :: Piece -> Color
-colorOf = snd
-
-piece :: Shape -> Color -> Piece
-piece = (,)
+data Piece = Piece { shapeOf :: Shape, colorOf :: Color }
+	deriving (Eq,Show)
 
 pieceFrom :: [String] -> Color -> Piece
-pieceFrom ss c = piece (shapeFromStrings '#' ss) c
+pieceFrom ss c = Piece (shapeFromStrings '#' ss) c
