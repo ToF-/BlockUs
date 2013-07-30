@@ -7,6 +7,9 @@ type Coord = (Int,Int)
 data Shape = Shape (S.Set Coord)
 	deriving (Eq, Show)
 
+empty :: Shape
+empty = Shape S.empty
+
 fromList :: [Coord] -> Shape
 fromList = Shape . S.fromList
 
