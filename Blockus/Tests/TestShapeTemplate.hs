@@ -20,5 +20,8 @@ tests = "A ShapeTemplate" ~: TestList
 																												              "##",
 																												              "  ",
 																												              "# "]
-	] 
+	,"merge N disctinct shape positions into one, with a column separation" ~:
+	  template [sharp ["##"]] ~?= sharp ["## #",
+	   																   "   #"]
+	  ] 
 
